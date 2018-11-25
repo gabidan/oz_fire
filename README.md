@@ -1,14 +1,12 @@
 # oz_fire
 Live fire incident data for Western Australia
 
-
 ```python
 import requests
 import pandas as pd
 import sqlite3
 import numpy as np 
 ```
-
 
 ```python
 from bs4 import BeautifulSoup
@@ -40,12 +38,9 @@ for r in raw_data["features"]:
     
 ```
 
-
 ```python
 df_final=pd.DataFrame(data)
 ```
-
-
 
 ```python
 df_final["startTime"]= pd.to_datetime(df_final.startTime,dayfirst=True)
@@ -59,7 +54,6 @@ del(df_final["coordinates"])
 
 ```python
 dff= df_final.set_index("incidentEventsId")
-
 ```
 
 
