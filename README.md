@@ -43,19 +43,7 @@ for r in raw_data["features"]:
 
 ```python
 df_final=pd.DataFrame(data)
-df_final.columns
 ```
-
-
-
-
-    Index(['DFESUniqueNumber', 'areaBurnt', 'classification', 'coordinates',
-           'description', 'incidentEventsId', 'lastUpdatedTime',
-           'localGovernmentArea', 'locationCrossName', 'locationStreetName',
-           'locationSuburb', 'numOfAppliancesResponding', 'region', 'situation',
-           'sm_coordinates', 'startTime', 'status', 'type'],
-          dtype='object')
-
 
 
 
@@ -79,32 +67,6 @@ dff= df_final.set_index("incidentEventsId")
 dff.dtypes
 ```
 
-
-
-
-    DFESUniqueNumber                     object
-    areaBurnt                            object
-    classification                       object
-    description                          object
-    lastUpdatedTime              datetime64[ns]
-    localGovernmentArea                  object
-    locationCrossName                    object
-    locationStreetName                   object
-    locationSuburb                       object
-    numOfAppliancesResponding            object
-    region                               object
-    situation                            object
-    sm_coordinates                       object
-    startTime                    datetime64[ns]
-    status                               object
-    type                                 object
-    long                                float64
-    lat                                 float64
-    dtype: object
-
-
-
-
 ```python
 def get_connection(path_to_db):
     #create DB 'ozfire'
@@ -113,17 +75,7 @@ def get_connection(path_to_db):
     
 
 def create_fire_table(cnx):
-    
-#     create_firedata_sql="""CREATE TABLE IF NOT EXISTS  "firedata" (
 
-#       "description" TEXT,
-#       "localGovernmentArea" TEXT,
-#       "startTime" TEXT,
-#       "incidentEventsId" integer,
-
-#       primary key("incidentEventsId")
-#     )"""
-    
     create_firedata_sql= """CREATE TABLE "firedata" (
         
         "incidentEventsId" INTEGER,
@@ -264,20 +216,6 @@ pivot_ui(fire_df)
 ```
 
 
-
-
-
-        <iframe
-            width="100%"
-            height="500"
-            src="pivottablejs.html"
-            frameborder="0"
-            allowfullscreen
-        ></iframe>
-        
-
-
-
 #### Exploratory analysis
 
 - Pivot table allows to explore the patterns of the incidents:
@@ -306,43 +244,16 @@ fire_df.groupby("region").incidentEventsId.count().plot(kind="bar")
 ```
 
 
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x1ef7c891c18>
-
-
-
-
-![png](output_20_1.png)
-
-
-
 ```python
 %matplotlib inline 
 fire_df.groupby(["region","localGovernmentArea"]).incidentEventsId.count().plot(kind="bar")
 ```
 
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x1ef7c9afd30>
-
-
-
-
-![png](output_21_1.png)
-
-
 #### Fires over time  
 
 - Type of fire / day of the month 
 
- ![](./images/description_by_data.jpg)
- 
- 
- 
- 
- 
+
 
 #### Summary
 
